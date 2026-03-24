@@ -1,18 +1,20 @@
 import { test, expect } from '@playwright/test';
+import { MainPage } from '../pages/MainPage';
+import { INPUT} from '../utils/MainPageData';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe("test group", () => {
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  test("Test 1", async ({page}) => {
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+    const mainPage = new MainPage(page);
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+    test.step("Test step 1", async () => {
+      await mainPage.clickLocator();
+    });
 
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-});
+    test.step("Test step 2", async () => {
+      await expect(mainPage.locator).toHaveText(INPUT.TEST1);
+    });
+  })
+})
+
