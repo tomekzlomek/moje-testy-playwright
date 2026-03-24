@@ -1,3 +1,4 @@
 export const INPUT = {
-  TEST1: "TEST1",
+  TEXT1: "text1",
 } as const;
+
